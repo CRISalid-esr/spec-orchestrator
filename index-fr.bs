@@ -75,11 +75,10 @@ Les acteurs du réseau conservent leurs données dans un [=Data Pod=], qui est p
 Le [=Data Pod=] peut offrir un accès sécurisé aux données via Linked Data Platform [[!LDP]] aux autres, mais
 ne peut pas effectuer d'actions telles qu'invocation de services distants sur le réseau ou lecture et écriture
 de contenu réseau. Ces capacités sont déléguées aux applications [=Dashboard=] où les acteurs
-peuvent interagir manuellement avec le [=Data Pod=] et le réseau et aux [=Orchestrator=]s qui peuvent travailler sur
-behalf of actors in an automated way.
+peuvent interagir manuellement avec le [=Data Pod=] et le réseau et aux [=Orchestrator=]s qui peuvent travailler de façon automatique pour le compte d'acteurs=.
 
-Au nom de l'acteur, un [=Orchestrator=] répond aux [=Trigger=] en exécutant un certain nombre
-d'[=Action=]s dictées par une [=Policy=] machine. Les déclencheurs possibles sont des
+Au nom de l'acteur, un [=Orchestrator=] répond aux déclencheurs [=Trigger=] en exécutant un certain nombre
+d'[=Action=]s dictées par un livre de règles ([=Policy=] machine). Les déclencheurs possibles sont des
 notifications entrantes, des changements perçus dans les [=Artefact=]s ou une invocation manuelle par un acteur.
 Les actions possibles sont :
 
