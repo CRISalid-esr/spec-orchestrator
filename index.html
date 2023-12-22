@@ -1489,7 +1489,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
   <link href="https://mellonscholarlycommunication.github.io/spec-orchestrator" rel="canonical">
-  <meta content="e5f459239ceec6bf1df0ea0e10716db20ba813a5" name="document-revision">
+  <meta content="8eb797b5a55688e2d7ae405420f22948f424a3dc" name="document-revision">
 <style>
 table {
   margin: 25px auto;
@@ -1971,24 +1971,26 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Implémentation de l’Orchestrator pour un réseau Web décentralisé</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Working Draft, <time class="dt-updated" datetime="2023-11-24">24 November 2023</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Working Draft, <time class="dt-updated" datetime="2023-12-22">22 December 2023</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://mellonscholarlycommunication.github.io/spec-orchestrator">https://mellonscholarlycommunication.github.io/spec-orchestrator</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/Patent2net/spec-orchestrator/issues/">GitHub</a>
+     <dd><a href="https://github.com/CRISalid-esr/spec-orchestrator/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:miel.vandersande@meemoo.be">Miel Vander Sande</a> (<span class="p-org org">meemoo - <a href="https://meemoo.be">Flemish Institute for Archives</a></span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:patrick.hochstenbach@ugent.be">Patrick Hochstenbach</a> (<span class="p-org org"><a href="https://knows.idlab.ugent.be">IDLab - Ghent University</a></span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:ruben.dedecker@ugent.be">Ruben Dedecker</a> (<span class="p-org org"><a href="https://knows.idlab.ugent.be">IDLab - Ghent University</a></span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:Jeroen.Werbrouck@ugent.be">Jeroen Werbrouck</a> (<span class="p-org org"><a href="https://knows.idlab.ugent.be">IDLab - Ghent University</a></span>)
+     <dt>Translation:
+     <dd>David Reymond <a href="http://www.univ-tln.fr">IMSIC - Université de Toulon</a>, david.reymond@univ-tln.fr
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 24 November 2023,
+In addition, as of 22 December 2023,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2106,10 +2108,9 @@ tous les autres composants du réseau.</p>
 Le <a data-link-type="dfn">Data Pod</a> peut offrir un accès sécurisé aux données via Linked Data Platform <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a> aux autres, mais
 ne peut pas effectuer d’actions telles qu’invocation de services distants sur le réseau ou lecture et écriture
 de contenu réseau. Ces capacités sont déléguées aux applications <a data-link-type="dfn">Dashboard</a> où les acteurs
-peuvent interagir manuellement avec le <a data-link-type="dfn">Data Pod</a> et le réseau et aux <a data-link-type="dfn" href="#orchestrator" id="ref-for-orchestrator">Orchestrator</a>s qui peuvent travailler sur
-behalf of actors in an automated way.</p>
-   <p>Au nom de l’acteur, un <a data-link-type="dfn" href="#orchestrator" id="ref-for-orchestrator①">Orchestrator</a> répond aux <a data-link-type="dfn" href="#trigger" id="ref-for-trigger">Trigger</a> en exécutant un certain nombre
-d'<a data-link-type="dfn" href="#action" id="ref-for-action">Action</a>s dictées par une <a data-link-type="dfn" href="https://w3c.github.io/webappsec-csp/#violation-policy" id="ref-for-violation-policy">Policy</a> machine. Les déclencheurs possibles sont des
+peuvent interagir manuellement avec le <a data-link-type="dfn">Data Pod</a> et le réseau et aux <a data-link-type="dfn" href="#orchestrator" id="ref-for-orchestrator">Orchestrator</a>s qui peuvent travailler de façon automatique pour le compte d’acteurs=.</p>
+   <p>Au nom de l’acteur, un <a data-link-type="dfn" href="#orchestrator" id="ref-for-orchestrator①">Orchestrator</a> répond aux déclencheurs <a data-link-type="dfn" href="#trigger" id="ref-for-trigger">Trigger</a> en exécutant un certain nombre
+d'<a data-link-type="dfn" href="#action" id="ref-for-action">Action</a>s dictées par un livre de règles (<a data-link-type="dfn" href="https://w3c.github.io/webappsec-csp/#violation-policy" id="ref-for-violation-policy">Policy</a> machine). Les déclencheurs possibles sont des
 notifications entrantes, des changements perçus dans les <a data-link-type="dfn">Artefact</a>s ou une invocation manuelle par un acteur.
 Les actions possibles sont :</p>
    <ul>
